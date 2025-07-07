@@ -1,0 +1,30 @@
+{
+  "name": "comet-history",
+  "version": "1.0.0",
+  "description": "Per-directory CLI command history",
+  "bin": {
+    "comet-history": "bin/comet-history.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/comet/comet-history.git"
+  },
+  "author": "kdinesh",
+  "license": "MIT",
+  "keywords": [
+    "cli",
+    "history",
+    "commands",
+    "shell",
+    "per-directory"
+  ],
+  "files": [
+    "bin/",
+    "LICENSE",
+    "README.md"
+  ],
+  "dependencies": {
+    "fs-extra": "^x.x.x",
+    "yargs": "^x.x.x"
+  }
+}
