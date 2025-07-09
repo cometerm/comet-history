@@ -20,4 +20,4 @@ comet-history
   comet-history ls [base]   # list commands under cwd or given folder
 
 • Reset data  
-  > ~/.config/comet-history/data.json
+  comet-history clear
