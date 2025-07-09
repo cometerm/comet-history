@@ -53,7 +53,7 @@ async function main() {
         const { root: driveRoot } = path.parse(raw)
         let root
         if (driveRoot === raw) {
-          // on Windows drive-root (“D:\”), keep the trailing slash
+          // on Windows drive-root ("D:\"), keep the trailing slash
           root = driveRoot
         } else {
           // strip any trailing separator on normal dirs
@@ -66,17 +66,33 @@ async function main() {
           .filter(([dir]) => dir === root || dir.startsWith(withSep))
           .sort(([a], [b]) => a.localeCompare(b))
 
-        // 3) for each, build the “A -> B -> C” chain
+        // 3) for each directory, display it with proper formatting
         for (const [dir, cmds] of entries) {
           // rel path from root, split into segments
           const rel = path.relative(root, dir)
           const parts = rel ? rel.split(path.sep).filter(Boolean) : []
-          const baseName = path.basename(root) // e.g. “test-1”
+          const baseName = path.basename(root)
           // if we have a basename, prefix it
           const chain = baseName ? [baseName, ...parts] : parts
           if (chain.length === 0) chain.push('.') // the root itself
-          console.log(chain.join(' -> ') + ' -> ' + cmds.join(' | '))
+          
+          const pathChain = chain.join(' -> ')
+          console.log(`\n📁 ${pathChain}`)
+          console.log('─'.repeat(Math.min(pathChain.length + 3, 50)))
+          
+          cmds.forEach((cmd, index) => {
+            console.log(`  ${index + 1}. ${cmd}`)
+          })
         }
+      }
+    )
+    .command(
+      'clear',
+      'Clear all command history',
+      () => {},
+      async () => {
+        await fs.outputFile(DB_PATH, JSON.stringify({}, null, 2))
+        console.log('✅ Command history cleared')
       }
     )
     .demandCommand(1)

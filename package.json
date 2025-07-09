@@ -1,6 +1,6 @@
 {
   "name": "comet-history",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Per-directory CLI command history",
   "bin": {
     "comet-history": "bin/comet-history.js"
