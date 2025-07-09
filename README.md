@@ -1,7 +1,7 @@
 comet-history
 
 • Install  
-  npm install -g comet-history
+  npm install -g comet-history@latest
 
 • Bash hook (add to ~/.bashrc)  
   ```bash
